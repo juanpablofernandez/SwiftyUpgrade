@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyUpgrade
+import StoreKit
 
 class ViewController: UIViewController {
 
@@ -24,13 +25,12 @@ class ViewController: UIViewController {
 
 extension ViewController: SwiftyUpgradeDelegate {
     
-    func userDidTapCancel() {
-        print("Dismissing Screen")
-    }
-    
-    func userDidTapPurchase() {
+    func userDidTapPurchase(_ product: SKProduct?) {
         print("Tapped Purchase")
     }
     
+    func userDidTapCancel() {
+        print("Dismissing Screen")
+    }
 }
 

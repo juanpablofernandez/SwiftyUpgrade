@@ -126,7 +126,7 @@ class SwiftyUpgradeViewController: UIViewController {
     }
     
     @objc func handlePurchase() {
-        delegate?.userDidTapPurchase()
+        delegate?.userDidTapPurchase(selectedProduct)
     }
     
     @objc func handleDismiss() {

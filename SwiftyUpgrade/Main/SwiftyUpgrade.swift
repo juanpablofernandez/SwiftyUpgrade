@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import StoreKit
 
 public protocol SwiftyUpgradeDelegate {
     func userDidTapCancel()
-    func userDidTapPurchase()
+    func userDidTapPurchase(_ product: SKProduct?)
 }
 
 public class SwiftyUpgrade {
