@@ -10,7 +10,6 @@ SwiftyUpgrade displays a pre-made highly editable ViewController from which the 
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
   s.author                = "Juan Pablo Fernandez"
   s.social_media_url      = "https://github.com/juanpablofernandez"
-  s.swift_version         = "5.0" 
   s.ios.deployment_target = '11.2'
   s.source                = { :git => "https://github.com/juanpablofernandez/SwiftyUpgrade.git", :tag => "#{s.version}" }
   s.source_files          = "SwiftyUpgrade", "SwiftyUpgrade/**/*.{swift}"
