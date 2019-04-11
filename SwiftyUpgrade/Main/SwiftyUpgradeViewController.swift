@@ -138,6 +138,8 @@ class SwiftyUpgradeViewController: UIViewController {
     
     func setup() {
         
+        selectedProduct = products.first
+        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         view.isOpaque = false
         
