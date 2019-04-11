@@ -22,9 +22,9 @@ class SwiftyUpgradeViewController: UIViewController {
     
     var features = SwiftyUpgrade.features
     
-    var products = [SKProduct]() {
-        didSet {
-            self.reloadView()
+    var products: [SKProduct] {
+        get {
+            return SwiftyUpgrade.subscriptions
         }
     }
     
@@ -313,9 +313,7 @@ extension SwiftyUpgradeViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func configureSubCell(cell: SwiftyUpgradeSubscriptionCell, forItemAt indexPath: IndexPath) {
-        if SwiftyUpgrade.subscriptions.count != 3 { return }
-        let product = SwiftyUpgrade.subscriptions[indexPath.row]
-        cell.product = products.filter({ $0.productIdentifier == product.productIdentifier }).first
+        cell.product = products[indexPath.row]
     }
 }
 

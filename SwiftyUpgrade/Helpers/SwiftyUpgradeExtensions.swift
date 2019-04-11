@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import StoreKit
 
 extension UIColor {
     
@@ -33,5 +34,36 @@ extension UIColor {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: alpha
         )
+    }
+}
+
+extension SKProduct.PeriodUnit {
+    func description(capitalizeFirstLetter: Bool = false, numberOfUnits: Int? = nil) -> String {
+        let period:String = {
+            switch self {
+            case .day: return "day"
+            case .week: return "week"
+            case .month: return "month"
+            case .year: return "year"
+            default: return ""
+            }
+        }()
+        
+        var numUnits = ""
+        var plural = ""
+        if let numberOfUnits = numberOfUnits {
+            numUnits = "\(numberOfUnits) " // Add space for formatting
+            plural = numberOfUnits > 1 ? "s" : ""
+        }
+        return "\(numUnits)\(capitalizeFirstLetter ? period.capitalized : period)\(plural)"
+    }
+}
+
+extension SKProduct {
+    var localizedPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = priceLocale
+        return formatter.string(from: price)!
     }
 }

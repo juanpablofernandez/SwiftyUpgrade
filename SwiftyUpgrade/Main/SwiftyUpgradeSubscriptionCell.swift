@@ -14,13 +14,13 @@ class SwiftyUpgradeSubscriptionCell: UICollectionViewCell {
     var product: SKProduct? {
         didSet {
             guard let product = product else { return }
-            let price = product.price
+            let price = product.localizedPrice
             guard let unitAmount = product.subscriptionPeriod?.numberOfUnits,
                 let unit = product.subscriptionPeriod?.unit else { return }
             
             self.price.text = "\(price)"
             self.durationCount.text = "\(unitAmount)"
-            self.duration.text = "\(unit)"
+            self.duration.text = "\(unit.description())"
             if unitAmount > 1 {
                 self.duration.text! += "s"
             }
