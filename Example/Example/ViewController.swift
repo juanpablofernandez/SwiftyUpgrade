@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func handleUpgrade(_ sender: UIButton) {
-//        SwiftyUpgrade.upgradeButtonTitle = "Yaaas Biatch"
         SwiftyUpgrade.shared.delegate = self
         SwiftyUpgrade.shared.present(self)
     }

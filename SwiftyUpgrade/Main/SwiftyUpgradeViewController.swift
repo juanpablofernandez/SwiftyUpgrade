@@ -20,11 +20,15 @@ class SwiftyUpgradeViewController: UIViewController {
         return SwiftyUpgrade.shared.delegate
     }
     
-    var features = SwiftyUpgrade.features
+    var features: [SwiftyUpgradeFeature] {
+        get {
+            return SwiftyUpgrade.features
+        }
+    }
     
     var products: [SKProduct] {
         get {
-            return SwiftyUpgrade.subscriptions
+            return SwiftyUpgrade.products
         }
     }
     
@@ -116,13 +120,11 @@ class SwiftyUpgradeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        SVProgressHUD.show()
     }
     
     func reloadView() {
         self.subCollectionView.reloadData()
         self.subCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
-//        SVProgressHUD.dismiss()
     }
     
     @objc func handlePurchase() {
@@ -143,8 +145,10 @@ class SwiftyUpgradeViewController: UIViewController {
         view.addSubview(containerView)
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         containerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        containerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
+//        containerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
+//        containerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
+        containerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.9).isActive = true
+        containerView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor).isActive = true
         
         // Collection View
         infoCollectionViewSetup()
@@ -306,13 +310,11 @@ extension SwiftyUpgradeViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func configureFeatureCell(cell: SwiftyUpgradeFeaturesCell, forItemAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
-        cell.title.text = features[indexPath.row]["title"]
-        cell.subTitle.text = features[indexPath.row]["description"]
-        cell.image.image = UIImage(named: features[indexPath.row]["image"]!)
+        cell.feature = features[indexPath.row]
     }
     
     func configureSubCell(cell: SwiftyUpgradeSubscriptionCell, forItemAt indexPath: IndexPath) {
+        guard indexPath.row < products.count else { return }
         cell.product = products[indexPath.row]
     }
 }

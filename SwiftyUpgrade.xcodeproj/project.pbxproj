@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB2F855B225FC0A1005C66CE /* SwiftyUpgradeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2F855A225FC0A1005C66CE /* SwiftyUpgradeFeature.swift */; };
 		EBFF26B7225E5AE8002E1ACD /* SwiftyUpgrade.h in Headers */ = {isa = PBXBuildFile; fileRef = EBFF26B5225E5AE8002E1ACD /* SwiftyUpgrade.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBFF26DF225E5BF3002E1ACD /* SwiftyUpgradeSubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFF26DC225E5BF3002E1ACD /* SwiftyUpgradeSubscriptionCell.swift */; };
 		EBFF26E0225E5BF3002E1ACD /* SwiftyUpgradeFeaturesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFF26DD225E5BF3002E1ACD /* SwiftyUpgradeFeaturesCell.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB2F855A225FC0A1005C66CE /* SwiftyUpgradeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyUpgradeFeature.swift; sourceTree = "<group>"; };
 		EBFF26B2225E5AE8002E1ACD /* SwiftyUpgrade.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyUpgrade.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFF26B5225E5AE8002E1ACD /* SwiftyUpgrade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyUpgrade.h; sourceTree = "<group>"; };
 		EBFF26B6225E5AE8002E1ACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				EBFF26DE225E5BF3002E1ACD /* SwiftyUpgradeViewController.swift */,
 				EBFF26DC225E5BF3002E1ACD /* SwiftyUpgradeSubscriptionCell.swift */,
 				EBFF26DD225E5BF3002E1ACD /* SwiftyUpgradeFeaturesCell.swift */,
+				EB2F855A225FC0A1005C66CE /* SwiftyUpgradeFeature.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				EBFF26E0225E5BF3002E1ACD /* SwiftyUpgradeFeaturesCell.swift in Sources */,
 				EBFF26FA225E6913002E1ACD /* SwiftyUpgradeBounceButton.swift in Sources */,
 				EBFF26F8225E62CD002E1ACD /* SwiftyUpgradeConstants.swift in Sources */,
+				EB2F855B225FC0A1005C66CE /* SwiftyUpgradeFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

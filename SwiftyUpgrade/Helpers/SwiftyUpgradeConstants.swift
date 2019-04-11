@@ -11,6 +11,11 @@ import StoreKit
 
 public extension SwiftyUpgrade {
     
+//    static var mainBackgroundColor: UIColor = UIColor("3897F1")
+//    static var secondaryBackgroundColor: UIColor = .white
+//    static var mainFontColor: UIColor = .white
+//    static var secondaryFontColor: UIColor = UIColor("ACB1BC")
+    
     
     // MARK: - SwiftyUpgradeViewController
     
@@ -35,22 +40,13 @@ public extension SwiftyUpgrade {
     static var subscriptionsBackgroundColor: UIColor = UIColor("DCDEE3")
     static var backgroundColor: UIColor = .white
     
-    static var subscriptions: [SKProduct] = []
+    static var products: [SKProduct] = []
     
-    static var features = [["title": "Title1",
-                            "description": "Description1",
-                            "image": "image1"],
-                           
-                           ["title": "Title2",
-                            "description": "Description2",
-                            "image": "image2"],
-                           
-                            ["title": "Title3",
-                             "description": "Description3",
-                             "image": "image3"]]
+    static var features: [SwiftyUpgradeFeature] = [SwiftyUpgradeFeature(),
+                                                   SwiftyUpgradeFeature(),
+                                                   SwiftyUpgradeFeature()]
     
-    
-    // MARK: - SwiftyUpgradeSubscriptionsCell
+    // MARK: - Subscriptions Cell
     
     static var subCellBorderColor: UIColor = UIColor("FECB24")
     static var subCellBackgroundColor: UIColor = .white
@@ -68,7 +64,9 @@ public extension SwiftyUpgrade {
     static var subCellBadgeFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
     
     
-    // MARK: - SwiftyUpgradeFeaturesCell
+    // MARK: - Features Cell
+    
+    static var upgradeCellImageTintColor: UIColor = .white
     
     static var upgradeCellTitleTextColor: UIColor = .white
     static var upgradeCellTitleFont: UIFont = .systemFont(ofSize: 20, weight: .heavy)

@@ -10,12 +10,21 @@ import UIKit
 
 class SwiftyUpgradeFeaturesCell: UICollectionViewCell {
     
+    var feature: SwiftyUpgradeFeature! {
+        didSet {
+            title.text = feature.title
+            subTitle.text = feature.description
+            image.image = feature.image
+        }
+    }
+    
     var image: UIImageView = {
         let view = UIImageView()
 //        view.image = #imageLiteral(resourceName: "iphone-upgrade-features-users")
         view.contentMode = .scaleAspectFit
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.tintColor = SwiftyUpgrade.upgradeCellImageTintColor
         view.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 10), for: .vertical)
         return view
     }()
@@ -54,6 +63,8 @@ class SwiftyUpgradeFeaturesCell: UICollectionViewCell {
     }
     
     func setup() {
+        
+        backgroundColor = .clear
         
         //ImageView
         self.addSubview(image)
