@@ -10,15 +10,15 @@ import Foundation
 
 public class SwiftyUpgradeFeature {
     
-    var title: String = "Feature Title"
-    var description: String = "Feature Description"
-    var image: UIImage? = nil
+    public var title: String = "Feature Title"
+    public var description: String = "Feature Description"
+    public var image: UIImage? = nil
     
-    init() {
+    public init() {
         
     }
     
-    convenience init(title: String, description: String, image: UIImage?) {
+    public convenience init(title: String, description: String, image: UIImage?) {
         self.init()
         self.title = title
         self.description = description
