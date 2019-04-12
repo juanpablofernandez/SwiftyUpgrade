@@ -29,12 +29,14 @@ public extension SwiftyUpgrade {
     static var cancelButtonTextColor: UIColor = UIColor("ACB1BC")
     static var cancelButtonFont: UIFont = .systemFont(ofSize: 15, weight: .bold)
     
-    static var upgradeInfoFont: UIFont = .systemFont(ofSize: 8, weight: .regular)
-    static var upgradeInfoUrlFont: UIFont = .systemFont(ofSize: 8, weight: .bold)
-    static var upgradeInfoTextColor: UIColor = UIColor("9BA0AA")
+    static var upgradeInfoFont: UIFont = .systemFont(ofSize: 12, weight: .regular)
+    static var upgradeInfoUrlFont: UIFont = .systemFont(ofSize: 12, weight: .bold)
+    static var upgradeInfoBodyTextColor: UIColor = UIColor("C0C0C0")//UIColor("9BA0AA")
+    static var upgradeInfoTitleTextColor: UIColor = .white
     static var termsServiceUrl: String = ""
     static var privacyPolicyUrl: String = ""
-    static var upgradeInfoText: String = "Payment will be charged to your iTunes Account, and it will be charged for renewal within 24 hours prior to the end of the current period. Auto-renewal may be turned off by going to your settings in the iTunes store after purchase. For more information, please visit our Terms of Service and Privacy Policy."
+    
+    static var upgradeInfoText: String = "Recurring billing, cancel anytime.\nBy tapping Continue, your payment will be charged to your iTunes account, and your subscription will automatically renew for the same package length at the same price until you cancel in settings in the iTunes store at least 24 hours prior to the end of the current period. By continuing, you agree to our Privacy Policy and Terms of Service."
     
     static var featuresBackgroundColor: UIColor = UIColor("3897F1")
     static var subscriptionsBackgroundColor: UIColor = UIColor("DCDEE3")
