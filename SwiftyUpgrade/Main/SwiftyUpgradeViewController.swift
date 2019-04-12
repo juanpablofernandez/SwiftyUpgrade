@@ -161,8 +161,8 @@ class SwiftyUpgradeViewController: UIViewController {
         //ScrollView
         view.addSubview(contentScrollView)
         contentScrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentScrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
-        contentScrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
+        contentScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        contentScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         contentScrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         contentScrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
