@@ -14,7 +14,12 @@ class SwiftyUpgradeViewController: UIViewController {
     var featureCollectionView: UICollectionView!
     var subCollectionView: UICollectionView!
     var pageControl: UIPageControl!
-    var selectedProduct: SKProduct?
+    
+    var selectedProduct: SKProduct? {
+        didSet {
+            self.updatePrimaryButtonTitle()
+        }
+    }
     
     var delegate: SwiftyUpgradeDelegate? {
         return SwiftyUpgrade.shared.delegate
@@ -104,6 +109,10 @@ class SwiftyUpgradeViewController: UIViewController {
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
         button.clipsToBounds = true
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
+        button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -215,6 +224,11 @@ class SwiftyUpgradeViewController: UIViewController {
         infoLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 15).isActive = true
         infoLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20).isActive = true
         infoLabel.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor, constant: -30).isActive = true
+    }
+    
+    func updatePrimaryButtonTitle() {
+        guard let product = selectedProduct else { return }
+        primaryButton.addAttributed(title: SwiftyUpgrade.upgradeButtonTitle, subtitle: "then \(product.localizedPrice)/Month")
     }
 }
 
