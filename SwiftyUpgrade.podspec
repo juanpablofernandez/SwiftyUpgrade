@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = "SwiftyUpgrade"
-  s.version               = "1.1.1"
+  s.version               = "1.1.2"
   s.summary               = "iOS framework that allows devs to quickly display an upgrade/IAP screen"
   s.description           = <<-DESC
 SwiftyUpgrade displays a pre-made highly editable ViewController from which the user is able to upgrade to PRO.

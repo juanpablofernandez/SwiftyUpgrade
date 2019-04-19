@@ -224,7 +224,8 @@ class SwiftyUpgradeViewController: UIViewController {
     
     func updatePrimaryButtonTitle() {
         guard let product = selectedProduct else { return }
-        primaryButton.addAttributed(title: SwiftyUpgrade.upgradeButtonTitle, subtitle: "then \(product.localizedPrice)/Month")
+        guard let unit = product.subscriptionPeriod?.unit else { return }
+        primaryButton.addAttributed(title: SwiftyUpgrade.upgradeButtonTitle, subtitle: "then \(product.localizedPrice)/\(unit.description(capitalizeFirstLetter: true, numberOfUnits: 1))")
     }
 }
 
