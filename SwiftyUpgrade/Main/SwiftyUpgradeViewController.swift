@@ -109,10 +109,6 @@ class SwiftyUpgradeViewController: UIViewController {
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
         button.clipsToBounds = true
-        button.titleLabel?.numberOfLines = 0
-        button.titleLabel?.lineBreakMode = .byWordWrapping
-        button.titleLabel?.textAlignment = .center
-        button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
