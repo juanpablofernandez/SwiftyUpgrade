@@ -100,8 +100,8 @@ class SwiftyUpgradeViewController: UIViewController {
         return label
     }()
     
-    var primaryButton: BounceButton = {
-        let button = BounceButton()
+    var primaryButton: PrimaryUpgradeButton = {
+        let button = PrimaryUpgradeButton()
         button.setTitle(SwiftyUpgrade.upgradeButtonTitle, for: .normal)
         button.titleLabel?.font = SwiftyUpgrade.upgradeButtonFont
         button.backgroundColor = SwiftyUpgrade.upgradeButtonBackgroundColor
