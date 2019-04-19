@@ -14,7 +14,12 @@ class SwiftyUpgradeViewController: UIViewController {
     var featureCollectionView: UICollectionView!
     var subCollectionView: UICollectionView!
     var pageControl: UIPageControl!
-    var selectedProduct: SKProduct?
+    
+    var selectedProduct: SKProduct? {
+        didSet {
+            self.updatePrimaryButtonTitle()
+        }
+    }
     
     var delegate: SwiftyUpgradeDelegate? {
         return SwiftyUpgrade.shared.delegate
@@ -32,6 +37,13 @@ class SwiftyUpgradeViewController: UIViewController {
         }
     }
     
+    var contentScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.keyboardDismissMode = .interactive
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
     var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = SwiftyUpgrade.backgroundColor
@@ -45,23 +57,31 @@ class SwiftyUpgradeViewController: UIViewController {
         let label = UITextView()
         label.text = SwiftyUpgrade.upgradeInfoText
         label.font = SwiftyUpgrade.upgradeInfoFont
-        label.textColor = SwiftyUpgrade.upgradeInfoTextColor
+        label.textColor = SwiftyUpgrade.upgradeInfoBodyTextColor
         label.isEditable = false
+        label.backgroundColor = .clear
         label.dataDetectorTypes = .link
         label.isScrollEnabled = false
-        label.linkTextAttributes = [.foregroundColor: SwiftyUpgrade.upgradeInfoTextColor]
+        label.linkTextAttributes = [.foregroundColor: SwiftyUpgrade.upgradeInfoBodyTextColor]
         label.textContainerInset = UIEdgeInsets.zero
         label.textAlignment = .center
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
+        paragraph.lineSpacing = 2
         
         let upgradeInfo = SwiftyUpgrade.upgradeInfoText
         
         let attributedString = NSMutableAttributedString(string: upgradeInfo, attributes: [
             .font: SwiftyUpgrade.upgradeInfoFont,
-            .foregroundColor: SwiftyUpgrade.upgradeInfoTextColor,
+            .foregroundColor: SwiftyUpgrade.upgradeInfoBodyTextColor,
             .paragraphStyle: paragraph])
+        
+        //Title
+        let titleAttribute: [NSAttributedString.Key: Any] = [.font: SwiftyUpgrade.upgradeInfoUrlFont,
+                                                             .foregroundColor: SwiftyUpgrade.upgradeInfoTitleTextColor]
+        let titleRange = (upgradeInfo as NSString).range(of: "Recurring billing, cancel anytime.")
+        attributedString.addAttributes(titleAttribute, range: titleRange)
         
         //Terms
         let termsAttribute: [NSAttributedString.Key: Any] = [.font: SwiftyUpgrade.upgradeInfoUrlFont,
@@ -89,6 +109,10 @@ class SwiftyUpgradeViewController: UIViewController {
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
         button.clipsToBounds = true
+        button.titleLabel?.numberOfLines = 0
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.textAlignment = .center
+        button.sizeToFit()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -140,17 +164,29 @@ class SwiftyUpgradeViewController: UIViewController {
         
         selectedProduct = products.first
         
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.80)
         view.isOpaque = false
         
+        //ScrollView
+        view.addSubview(contentScrollView)
+        contentScrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentScrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        contentScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        contentScrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        contentScrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
         // Container View
-        view.addSubview(containerView)
+//        let a = view.bounds.height// - UIApplication.shared.statusBarFrame.size.height
+//        let h = (a - (a * 0.85)) / 2
+        contentScrollView.addSubview(containerView)
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         containerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-//        containerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 50).isActive = true
+//        containerView.topAnchor.constraint(equalTo: contentScrollView.topAnchor, constant: h).isActive = true
 //        containerView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
-        containerView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.9).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor).isActive = true
+        containerView.heightAnchor.constraint(equalTo: contentScrollView.heightAnchor, multiplier: 0.85).isActive = true
+        containerView.centerYAnchor.constraint(greaterThanOrEqualTo: contentScrollView.centerYAnchor, constant: 0).isActive = true
+//        containerView.centerYAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.centerYAnchor, constant: 0).isActive = true
+//        containerView.centerYAnchor.constraint(greaterThanOrEqualTo: view.layoutMarginsGuide.centerYAnchor, constant: 0).isActive = true
         
         // Collection View
         infoCollectionViewSetup()
@@ -171,7 +207,7 @@ class SwiftyUpgradeViewController: UIViewController {
         containerView.addSubview(secondaryButton)
         secondaryButton.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 24).isActive = true
         secondaryButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -24).isActive = true
-        secondaryButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0).isActive = true
+        secondaryButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10).isActive = true
         secondaryButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //Primary Button
@@ -183,10 +219,16 @@ class SwiftyUpgradeViewController: UIViewController {
         primaryButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //Info Label
-        containerView.addSubview(infoLabel)
-        infoLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 10).isActive = true
-        infoLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -10).isActive = true
-        infoLabel.topAnchor.constraint(equalTo: subCollectionView.bottomAnchor, constant: 10).isActive = true
+        contentScrollView.addSubview(infoLabel)
+        infoLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: -15).isActive = true
+        infoLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 15).isActive = true
+        infoLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20).isActive = true
+        infoLabel.bottomAnchor.constraint(equalTo: contentScrollView.bottomAnchor, constant: -30).isActive = true
+    }
+    
+    func updatePrimaryButtonTitle() {
+        guard let product = selectedProduct else { return }
+        primaryButton.addAttributed(title: SwiftyUpgrade.upgradeButtonTitle, subtitle: "then \(product.localizedPrice)/Month")
     }
 }
 

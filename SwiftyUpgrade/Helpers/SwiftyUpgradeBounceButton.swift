@@ -33,4 +33,39 @@ class BounceButton: UIButton {
     }
 }
 
+class PrimaryUpgradeButton: BounceButton {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setup() {
+        self.titleLabel?.numberOfLines = 0
+        self.titleLabel?.lineBreakMode = .byWordWrapping
+        self.titleLabel?.textAlignment = .center
+        self.sizeToFit()
+    }
+    
+    func addAttributed(title: String, subtitle: String) {
+
+        //Title Attributed String
+        let titleAttrs: [NSAttributedString.Key : Any] = [.font: UIFont.systemFont(ofSize: 15, weight: .bold),
+                                                          .foregroundColor: UIColor.white]
+        
+        //SubTitle Attributed String
+        let subTitleAttrs: [NSAttributedString.Key : Any] = [.font: UIFont.systemFont(ofSize: 12, weight: .light),
+                                                             .foregroundColor: UIColor.white]
+        
+        let attributedString = NSMutableAttributedString()
+        attributedString.append(NSAttributedString(string: "\(title)\n", attributes: titleAttrs))
+        attributedString.append(NSAttributedString(string: subtitle, attributes: subTitleAttrs))
+        self.setAttributedTitle(attributedString, for: .normal)
+    }
+}
+
 
