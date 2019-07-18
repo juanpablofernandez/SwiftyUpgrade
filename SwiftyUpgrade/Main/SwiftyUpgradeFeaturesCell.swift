@@ -67,22 +67,33 @@ class SwiftyUpgradeFeaturesCell: UICollectionViewCell {
         backgroundColor = .clear
         
         //ImageView
-        self.addSubview(image)
-        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        image.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
-        image.heightAnchor.constraint(equalToConstant: 75).isActive = true
+//        self.addSubview(image)
+//        image.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+//        image.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+//        image.topAnchor.constraint(equalTo: self.topAnchor, constant: 50).isActive = true
+//        image.heightAnchor.constraint(equalToConstant: 75).isActive = true
+//
+//        //Title
+//        self.addSubview(title)
+//        title.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+//        title.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+//        title.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25).isActive = true
+//
+//        //Subtitle
+//        self.addSubview(subTitle)
+//        subTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+//        subTitle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+//        subTitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 15).isActive = true
         
-        //Title
-        self.addSubview(title)
-        title.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        title.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        title.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 25).isActive = true
+        let stackView = UIStackView(arrangedSubviews: [image, title, subTitle])
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillProportionally
         
-        //Subtitle
-        self.addSubview(subTitle)
-        subTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        subTitle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        subTitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 15).isActive = true
+        self.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
 }

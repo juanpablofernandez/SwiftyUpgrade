@@ -39,7 +39,7 @@ extension UIColor {
 
 extension SKProduct.PeriodUnit {
     func description(capitalizeFirstLetter: Bool = false, numberOfUnits: Int? = nil) -> String {
-        var period: String = {
+        let period: String = {
             switch self {
             case .day: return "day"
             case .week: return "week"
